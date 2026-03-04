@@ -1,39 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Kayane 💙</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Kayane 💙</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Kayane 💙</h1>
-    <p>Esse site é só pra você.</p>
+<h1>Kayane 💙</h1>
+<p>Esse site é só pra você.</p>
 
-    <img src="imagens/foto1.jpg" width="300">
+<div class="heart">💙</div>
 
-    <h2>🎵 Suas músicas</h2>
+<p id="contador"></p>
 
-    <div>
-        <p>🎵 Seu Nome é Paz</p>
-        <audio controls>
-            <source src="musicas/seu-nome-e-paz.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+<img src="imagens/foto1.jpg">
 
-    <div>
-        <p>🎵 Meu Coração é Seu</p>
-        <audio controls>
-            <source src="musicas/meu-coracao-e-seu.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+<h2>🎵 Suas músicas</h2>
 
-    <div>
-        <p>🎵 Paz em Você</p>
-        <audio controls>
-            <source src="musicas/paz-em-voce.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+<div class="card">
+<p>🎵 Seu Nome é Paz</p>
+<audio controls>
+<source src="musicas/seu-nome-e-paz.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div class="card">
+<p>🎵 Meu Coração é Seu</p>
+<audio controls>
+<source src="musicas/meu-coracao-e-seu.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div class="card">
+<p>🎵 Paz em Você</p>
+<audio controls>
+<source src="musicas/paz-em-voce.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<script>
+const dataInicio = new Date("2025-02-27");
+const hoje = new Date();
+const diff = hoje - dataInicio;
+const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+document.getElementById("contador").innerHTML =
+"Já se passaram " + dias + " dias desde que algo especial começou 💙";
+</script>
 
 </body>
 </html>
