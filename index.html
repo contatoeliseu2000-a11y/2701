@@ -1,52 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kayane 💙</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* VIDEO FUNDO */
+#bg-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* CONTEÚDO */
+.container {
+  padding: 40px 20px;
+  backdrop-filter: blur(4px);
+}
+
+/* CORAÇÃO */
+.heart {
+  font-size: 45px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* IMAGEM */
+img {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 20px;
+  margin: 20px 0;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+/* MUSICAS */
+.music-card {
+  width: 90%;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+}
+
+audio {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.frase {
+  margin-top: 40px;
+  font-size: 18px;
+  opacity: 0.9;
+}
+</style>
 </head>
+
 <body>
+
+<!-- VIDEO DE FUNDO -->
+<video autoplay muted loop id="bg-video">
+  <source src="galaxia.mp4" type="video/mp4">
+</video>
+
+<div class="container">
 
 <h1>Kayane 💙</h1>
 <p>Esse site é só pra você.</p>
 
 <div class="heart">💙</div>
 
-<p id="contador"></p>
+<p>Já se passaram 370 dias desde que algo especial começou 💙</p>
 
-<img src="imagens/foto1.jpg">
+<img src="foto1.jpg">
 
 <h2>🎵 Suas músicas</h2>
 
-<div class="card">
-<p>🎵 Seu Nome é Paz</p>
-<audio controls>
-<source src="musicas/seu-nome-e-paz.mp3" type="audio/mpeg">
-</audio>
+<div class="music-card">
+  <p>🎵 Seu Nome é Paz</p>
+  <audio controls>
+    <source src="musica1.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
-<div class="card">
-<p>🎵 Meu Coração é Seu</p>
-<audio controls>
-<source src="musicas/meu-coracao-e-seu.mp3" type="audio/mpeg">
-</audio>
+<div class="music-card">
+  <p>🎵 Meu Coração é Seu</p>
+  <audio controls>
+    <source src="musica2.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
-<div class="card">
-<p>🎵 Paz em Você</p>
-<audio controls>
-<source src="musicas/paz-em-voce.mp3" type="audio/mpeg">
-</audio>
+<div class="music-card">
+  <p>🎵 Paz em Você</p>
+  <audio controls>
+    <source src="musica3.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
-<script>
-const dataInicio = new Date("2025-02-27");
-const hoje = new Date();
-const diff = hoje - dataInicio;
-const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-document.getElementById("contador").innerHTML =
-"Já se passaram " + dias + " dias desde que algo especial começou 💙";
-</script>
+<div class="frase">
+Entre o tempo e o espaço…  
+eu escolheria você em qualquer universo. 🌌
+</div>
+
+</div>
 
 </body>
 </html>
