@@ -1,1 +1,58 @@
-style.css
+body {
+background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+color: white;
+font-family: 'Arial', sans-serif;
+text-align: center;
+margin: 0;
+padding: 20px;
+animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+h1 {
+font-size: 32px;
+margin-top: 10px;
+}
+
+img {
+width: 280px;
+border-radius: 20px;
+margin: 20px 0;
+box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+.card {
+background: rgba(255,255,255,0.08);
+padding: 15px;
+margin: 15px auto;
+border-radius: 20px;
+width: 90%;
+max-width: 350px;
+backdrop-filter: blur(10px);
+}
+
+audio {
+width: 100%;
+margin-top: 10px;
+}
+
+.heart {
+font-size: 40px;
+animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.2); }
+100% { transform: scale(1); }
+}
+
+#contador {
+margin-top: 10px;
+font-size: 16px;
+opacity: 0.9;
+}
