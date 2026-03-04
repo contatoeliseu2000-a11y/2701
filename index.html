@@ -113,25 +113,95 @@ audio {
 <h2>🎵 Suas músicas</h2>
 
 <div class="card">
-  <p>Seu Nome é Paz</p>
-  <audio controls>
-    <source src="musicas/seu-nome-e-paz.mp3" type="audio/mpeg">
-  </audio>
+  <h3>Seu Nome é Paz</h3>
+  <div class="player">
+    <button onclick="togglePlay('m1', this)">▶</button>
+    <div class="progress">
+      <div class="progress-bar" id="bar-m1"></div>
+    </div>
+  </div>
+  <button class="lyrics-btn" onclick="toggleLyrics('l1')">📜 Ver letra</button>
+  <div id="l1" class="lyrics">
+    Seu nome é paz…<br>
+    É luz que me conduz…<br>
+    Mesmo se o tempo parar…<br>
+    Eu escolheria você.
+  </div>
+  <audio id="m1" src="musicas/seu-nome-e-paz.mp3"></audio>
 </div>
 
 <div class="card">
-  <p>Meu Coração é Seu</p>
-  <audio controls>
-    <source src="musicas/meu-coracao-e-seu.mp3" type="audio/mpeg">
-  </audio>
+  <h3>Meu Coração é Seu</h3>
+  <div class="player">
+    <button onclick="togglePlay('m2', this)">▶</button>
+    <div class="progress">
+      <div class="progress-bar" id="bar-m2"></div>
+    </div>
+  </div>
+  <button class="lyrics-btn" onclick="toggleLyrics('l2')">📜 Ver letra</button>
+  <div id="l2" class="lyrics">
+    Meu coração é seu…<br>
+    Entre galáxias e sonhos…<br>
+    Você sempre foi meu destino.
+  </div>
+  <audio id="m2" src="musicas/meu-coracao-e-seu.mp3"></audio>
 </div>
 
 <div class="card">
-  <p>Paz em Você</p>
-  <audio controls>
-    <source src="musicas/paz-em-voce.mp3" type="audio/mpeg">
-  </audio>
+  <h3>Paz em Você</h3>
+  <div class="player">
+    <button onclick="togglePlay('m3', this)">▶</button>
+    <div class="progress">
+      <div class="progress-bar" id="bar-m3"></div>
+    </div>
+  </div>
+  <button class="lyrics-btn" onclick="toggleLyrics('l3')">📜 Ver letra</button>
+  <div id="l3" class="lyrics">
+    Paz em você…<br>
+    É o que meu mundo precisa…<br>
+    Mesmo no silêncio do universo.
+  </div>
+  <audio id="m3" src="musicas/paz-em-voce.mp3"></audio>
 </div>
+
+<script>
+let currentAudio = null;
+
+function togglePlay(id, btn) {
+  const audio = document.getElementById(id);
+
+  if (currentAudio && currentAudio !== audio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    document.querySelectorAll('.player button').forEach(b => b.textContent = "▶");
+  }
+
+  if (audio.paused) {
+    audio.play();
+    btn.textContent = "⏸";
+    currentAudio = audio;
+  } else {
+    audio.pause();
+    btn.textContent = "▶";
+  }
+
+  audio.ontimeupdate = function() {
+    const progress = document.getElementById("bar-" + id);
+    progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
+  };
+
+  audio.onended = function() {
+    btn.textContent = "▶";
+    if (id === "m1") document.querySelector('[onclick*="m2"]').click();
+    if (id === "m2") document.querySelector('[onclick*="m3"]').click();
+  };
+}
+
+function toggleLyrics(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === "block" ? "none" : "block";
+}
+</script>
 
 <div class="frase">
 Entre o tempo e o espaço…  
