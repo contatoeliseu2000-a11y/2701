@@ -6,258 +6,201 @@
 <title>Kayane 💙</title>
 
 <style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
 
-/* BASE */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
+body{
+overflow:hidden;
+background:black;
+color:white;
+text-align:center;
 }
 
 /* VIDEO FUNDO */
-#bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -2;
-  transform: translateZ(0);
-  will-change: transform;
-  backface-visibility: hidden;
+video{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
 }
 
-/* OVERLAY ESCURO */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 30, 0.65);
-  z-index: -1;
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.65);
+z-index:-1;
 }
 
-/* CONTEÚDO */
-.container {
-  padding: 40px 20px;
-  position: relative;
-  z-index: 1;
+.container{
+position:relative;
+top:50%;
+transform:translateY(-50%);
+padding:20px;
+max-width:900px;
+margin:auto;
 }
 
-/* CORAÇÃO */
-.heart {
-  font-size: 40px;
-  display: inline-block;
-  animation: pulse 1.5s infinite;
+h1{
+font-size:32px;
+margin-bottom:25px;
+letter-spacing:2px;
 }
 
-@keyframes pulse {
-  0% { transform: scale3d(1,1,1); }
-  50% { transform: scale3d(1.2,1.2,1); }
-  100% { transform: scale3d(1,1,1); }
+/* BOTÕES MAIORES */
+button{
+padding:18px 35px;
+border:none;
+border-radius:35px;
+background:#00aaff;
+color:white;
+font-size:18px;
+cursor:pointer;
+margin:12px;
+transition:0.3s;
+min-width:260px;
 }
 
-/* IMAGEM */
-img {
-  width: 90%;
-  max-width: 350px;
-  border-radius: 20px;
-  margin: 20px 0;
+button:hover{
+background:#0088cc;
+transform:scale(1.08);
 }
 
-/* CARD */
-.card {
-  background: rgba(0,0,0,0.5);
-  padding: 20px;
-  margin: 25px auto;
-  width: 90%;
-  max-width: 500px;
-  border-radius: 20px;
+/* LETRA */
+.lyrics{
+margin-top:35px;
+font-size:24px;
+line-height:42px;
+min-height:220px;
 }
 
-/* PLAYER */
-.player {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
+.line{
+opacity:0.3;
+transition:0.6s;
 }
 
-.player button {
-  background: #1e3a8a;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 50%;
-  font-size: 16px;
-  cursor: pointer;
+.active{
+opacity:1;
+color:#00ccff;
+font-size:28px;
+text-shadow:0 0 15px #00ccff;
 }
-
-.progress {
-  flex: 1;
-  height: 6px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: white;
-}
-
-.lyrics {
-  display: none;
-  margin-top: 10px;
-  font-size: 14px;
-  opacity: 0.9;
-}
-
-.lyrics-btn {
-  margin-top: 10px;
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-.frase {
-  margin-top: 40px;
-  font-size: 18px;
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- VIDEO FUNDO -->
-<video autoplay muted loop playsinline id="bg-video">
-  <source src="video.mp4" type="video/mp4">
+<video autoplay muted loop>
+<source src="video/universo.mp4" type="video/mp4">
 </video>
 
 <div class="overlay"></div>
 
 <div class="container">
+<h1>🎵 Para Kayane 💙</h1>
 
-<h1>🥰 Kayane 💙</h1>
-<p>Esse site é só pra você.</p>
+<button onclick="tocarMusica(1)">🎵 Seu Nome é Paz</button><br>
+<button onclick="tocarMusica(2)">🎵 Meu Coração é Seu</button><br>
+<button onclick="tocarMusica(3)">🎵 Paz em Você</button>
 
-<div class="heart">💙</div>
+<audio id="player"></audio>
 
-<p>sorria e brilhe.</p>
-
-<img src="foto.jpg">
-
-<h2>🎵 Suas músicas</h2>
-
-<!-- MÚSICA 1 -->
-<div class="card">
-  <h3>Seu Nome é Paz</h3>
-  <div class="player">
-    <button onclick="togglePlay('m1', this)">▶</button>
-    <div class="progress">
-      <div class="progress-bar" id="bar-m1"></div>
-    </div>
-  </div>
-  <button class="lyrics-btn" onclick="toggleLyrics('l1')">📜 Ver letra</button>
-  <div id="l1" class="lyrics">
-    Seu nome é paz…<br>
-    É luz que me conduz…<br>
-    Mesmo se o tempo parar…<br>
-    Eu escolheria você.
-  </div>
-  <audio id="m1" src="musicas/seu-nome-e-paz.mp3"></audio>
-</div>
-
-<!-- MÚSICA 2 -->
-<div class="card">
-  <h3>Meu Coração é Seu</h3>
-  <div class="player">
-    <button onclick="togglePlay('m2', this)">▶</button>
-    <div class="progress">
-      <div class="progress-bar" id="bar-m2"></div>
-    </div>
-  </div>
-  <button class="lyrics-btn" onclick="toggleLyrics('l2')">📜 Ver letra</button>
-  <div id="l2" class="lyrics">
-    Meu coração é seu…<br>
-    Entre galáxias e sonhos…<br>
-    Você sempre foi meu destino.
-  </div>
-  <audio id="m2" src="musicas/meu-coracao-e-seu.mp3"></audio>
-</div>
-
-<!-- MÚSICA 3 -->
-<div class="card">
-  <h3>Paz em Você</h3>
-  <div class="player">
-    <button onclick="togglePlay('m3', this)">▶</button>
-    <div class="progress">
-      <div class="progress-bar" id="bar-m3"></div>
-    </div>
-  </div>
-  <button class="lyrics-btn" onclick="toggleLyrics('l3')">📜 Ver letra</button>
-  <div id="l3" class="lyrics">
-    Paz em você…<br>
-    É o que meu mundo precisa…<br>
-    Mesmo no silêncio do universo.
-  </div>
-  <audio id="m3" src="musicas/paz-em-voce.mp3"></audio>
-</div>
-
-<div class="frase">
-Entre o tempo e o espaço…  
-eu escolheria você em qualquer universo. 🌌
-</div>
-
+<div class="lyrics" id="lyrics"></div>
 </div>
 
 <script>
 
-let currentAudio = null;
+const player = document.getElementById("player");
+const lyricsDiv = document.getElementById("lyrics");
 
-function togglePlay(id, btn) {
-  const audio = document.getElementById(id);
+let intervalo;
+let index = 0;
 
-  if (currentAudio && currentAudio !== audio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-    document.querySelectorAll('.player button').forEach(b => b.textContent = "▶");
-  }
+const musicas = {
+1:{
+arquivo:"musicas/seu-nome-e-paz.mp3",
+letra:[
+"Seu nome é paz...",
+"Você ilumina meu caminho...",
+"Mesmo se o mundo parar...",
+"Eu escolheria você."
+]
+},
+2:{
+arquivo:"musicas/meu-coracao-e-seu.mp3",
+letra:[
+"Kayane… yeah",
+"Entre o 27 e o 01",
+"Só a gente, só a gente",
+"Eu quero estar com você pra sempre",
+"Kayane, quando sorri, meu mundo se ilumina",
+"Cada nota que cantamos vira nossa rima fina",
+"Você diz que eu trago paz, meu coração combina",
+"Nosso riso e nossas vozes tornam a vida divina",
+"Se eu pudesse, guardaria cada instante",
+"Entre nossas vozes, tudo fica tão vibrante",
+"Kayane, eu quero estar sempre com você",
+"Meu coração bate forte, só quer você pra valer",
+"Entre aniversários, datas que se alinham",
+"Me aceita como namorado? Kayane, é você que me fascina."
+]
+},
+3:{
+arquivo:"musicas/paz-em-voce.mp3",
+letra:[
+"Paz em você eu encontrei...",
+"No seu abraço eu me perdi...",
+"Se o tempo parar...",
+"Eu fico aqui."
+]
+}
+};
 
-  if (audio.paused) {
-    audio.play();
-    btn.textContent = "⏸";
-    currentAudio = audio;
-  } else {
-    audio.pause();
-    btn.textContent = "▶";
-  }
-
-  audio.ontimeupdate = function() {
-    const progress = document.getElementById("bar-" + id);
-    progress.style.width = (audio.currentTime / audio.duration) * 100 + "%";
-  };
-
-  audio.onended = function() {
-    btn.textContent = "▶";
-    if (id === "m1") document.querySelector('[onclick*="m2"]').click();
-    if (id === "m2") document.querySelector('[onclick*="m3"]').click();
-  };
+function renderLyrics(letra){
+lyricsDiv.innerHTML="";
+letra.forEach((linha,i)=>{
+const div=document.createElement("div");
+div.classList.add("line");
+div.innerText=linha;
+div.id="line-"+i;
+lyricsDiv.appendChild(div);
+});
 }
 
-function toggleLyrics(id) {
-  const el = document.getElementById(id);
-  el.style.display = el.style.display === "block" ? "none" : "block";
+function tocarMusica(num){
+
+clearInterval(intervalo);
+player.pause();
+player.currentTime=0;
+
+player.src = musicas[num].arquivo;
+renderLyrics(musicas[num].letra);
+
+player.play();
+
+index=0;
+
+intervalo=setInterval(()=>{
+if(index>0){
+document.getElementById("line-"+(index-1)).classList.remove("active");
+}
+if(index < musicas[num].letra.length){
+document.getElementById("line-"+index).classList.add("active");
+index++;
+}else{
+clearInterval(intervalo);
+}
+},3500);
+
 }
 
 </script>
