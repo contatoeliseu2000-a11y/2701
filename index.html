@@ -3,54 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>😽 Kayane 💙</title>
+<title>😻 Kayane 💙</title>
 
 <style>
 
+/* CONFIGURAÇÃO BASE */
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
   color: white;
   text-align: center;
+  overflow-x: hidden;
 }
 
-/* VIDEO FUNDO */
-video {
+/* VIDEO TELA CHEIA (SEM PULSAR) */
+#bg-video {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   object-fit: cover;
   z-index: -2;
+  transform: none !important;
 }
 
-/* ESCURECER FUNDO */
+/* CAMADA ESCURA */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,30,0.6);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 30, 0.65);
   z-index: -1;
 }
 
-/* CONTEUDO */
+/* CONTEÚDO */
 .container {
-  padding: 30px 15px;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
 }
 
-/* CORAÇÃO */
+/* CORAÇÃO (SÓ ELE PULSA) */
 .heart {
   font-size: 40px;
+  display: inline-block;
   animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-  0% {transform: scale(1);}
-  50% {transform: scale(1.2);}
-  100% {transform: scale(1);}
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 /* IMAGEM */
@@ -61,7 +68,7 @@ img {
   margin: 20px 0;
 }
 
-/* MUSICAS */
+/* CARDS DAS MÚSICAS */
 .card {
   background: rgba(0,0,0,0.5);
   padding: 15px;
@@ -85,7 +92,8 @@ audio {
 
 <body>
 
-<video autoplay muted loop>
+<!-- VIDEO FUNDO -->
+<video autoplay muted loop playsinline id="bg-video">
   <source src="video.mp4" type="video/mp4">
 </video>
 
@@ -94,13 +102,15 @@ audio {
 <div class="container">
 
 <h1>Kayane 💙</h1>
-<p>Esse site é só pra você.</p>
+<p>Esse site é só pra você 🥰.</p>
 
 <div class="heart">💙</div>
 
-<p>feito para uma pessoa especial.</p>
+<p>Já se passaram meses.</p>
 
 <img src="foto.jpg">
+
+<h2>🎵 Suas músicas</h2>
 
 <div class="card">
   <p>Seu Nome é Paz</p>
