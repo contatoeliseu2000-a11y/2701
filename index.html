@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>😻 Kayane 💙</title>
+<title>Kayane 💙</title>
 
 <style>
 
-/* CONFIGURAÇÃO BASE */
+/* BASE */
 body {
   margin: 0;
   padding: 0;
@@ -17,7 +17,7 @@ body {
   overflow-x: hidden;
 }
 
-/* VIDEO TELA CHEIA (SEM PULSAR) */
+/* VIDEO FUNDO */
 #bg-video {
   position: fixed;
   top: 0;
@@ -26,10 +26,12 @@ body {
   height: 100vh;
   object-fit: cover;
   z-index: -2;
-  transform: none !important;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-/* CAMADA ESCURA */
+/* OVERLAY ESCURO */
 .overlay {
   position: fixed;
   top: 0;
@@ -47,7 +49,7 @@ body {
   z-index: 1;
 }
 
-/* CORAÇÃO (SÓ ELE PULSA) */
+/* CORAÇÃO */
 .heart {
   font-size: 40px;
   display: inline-block;
@@ -55,9 +57,9 @@ body {
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+  0% { transform: scale3d(1,1,1); }
+  50% { transform: scale3d(1.2,1.2,1); }
+  100% { transform: scale3d(1,1,1); }
 }
 
 /* IMAGEM */
@@ -68,18 +70,63 @@ img {
   margin: 20px 0;
 }
 
-/* CARDS DAS MÚSICAS */
+/* CARD */
 .card {
   background: rgba(0,0,0,0.5);
-  padding: 15px;
-  margin: 20px auto;
+  padding: 20px;
+  margin: 25px auto;
   width: 90%;
-  max-width: 450px;
-  border-radius: 15px;
+  max-width: 500px;
+  border-radius: 20px;
 }
 
-audio {
-  width: 100%;
+/* PLAYER */
+.player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.player button {
+  background: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.progress {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: white;
+}
+
+.lyrics {
+  display: none;
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.lyrics-btn {
+  margin-top: 10px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 12px;
+  cursor: pointer;
 }
 
 .frase {
@@ -101,17 +148,18 @@ audio {
 
 <div class="container">
 
-<h1>😻 Kayane 💙</h1>
-<p>Esse site é só pra você 🥰.</p>
+<h1>🥰 Kayane 💙</h1>
+<p>Esse site é só pra você.</p>
 
 <div class="heart">💙</div>
 
-<p>Já se passaram meses.</p>
+<p>sorria e brilhe.</p>
 
 <img src="foto.jpg">
 
 <h2>🎵 Suas músicas</h2>
 
+<!-- MÚSICA 1 -->
 <div class="card">
   <h3>Seu Nome é Paz</h3>
   <div class="player">
@@ -130,6 +178,7 @@ audio {
   <audio id="m1" src="musicas/seu-nome-e-paz.mp3"></audio>
 </div>
 
+<!-- MÚSICA 2 -->
 <div class="card">
   <h3>Meu Coração é Seu</h3>
   <div class="player">
@@ -147,6 +196,7 @@ audio {
   <audio id="m2" src="musicas/meu-coracao-e-seu.mp3"></audio>
 </div>
 
+<!-- MÚSICA 3 -->
 <div class="card">
   <h3>Paz em Você</h3>
   <div class="player">
@@ -164,7 +214,15 @@ audio {
   <audio id="m3" src="musicas/paz-em-voce.mp3"></audio>
 </div>
 
+<div class="frase">
+Entre o tempo e o espaço…  
+eu escolheria você em qualquer universo. 🌌
+</div>
+
+</div>
+
 <script>
+
 let currentAudio = null;
 
 function togglePlay(id, btn) {
@@ -201,14 +259,8 @@ function toggleLyrics(id) {
   const el = document.getElementById(id);
   el.style.display = el.style.display === "block" ? "none" : "block";
 }
+
 </script>
-
-<div class="frase">
-Entre o tempo e o espaço…  
-eu escolheria você em qualquer universo. 🌌
-</div>
-
-</div>
 
 </body>
 </html>
