@@ -8,6 +8,35 @@ text-align:center;
 overflow-x:hidden;
 transform:translateZ(0);
 }
+<script>
+
+const musica = document.getElementById("musicaPrincipal");
+
+musica.addEventListener("play", function(){
+
+setInterval(criarEstrela, 300);
+
+});
+
+function criarEstrela(){
+
+const star = document.createElement("div");
+
+star.classList.add("star");
+
+star.style.left = Math.random() * window.innerWidth + "px";
+
+star.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+document.body.appendChild(star);
+
+setTimeout(()=>{
+star.remove();
+},5000);
+
+}
+
+</script>
 
 /* VIDEO TELA CHEIA BLINDADO */
 #bg-video {
