@@ -17,7 +17,7 @@ body {
   overflow-x: hidden;
 }
 
-/* VIDEO TELA CHEIA (SEM PULSAR) */
+/* VIDEO FUNDO */
 #bg-video {
   position: fixed;
   top: 0;
@@ -26,7 +26,6 @@ body {
   height: 100vh;
   object-fit: cover;
   z-index: -2;
-  transform: none !important;
 }
 
 /* CAMADA ESCURA */
@@ -40,14 +39,52 @@ body {
   z-index: -1;
 }
 
+/* TELA DE ENTRADA */
+
+#entrada{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:rgba(0,0,0,0.6);
+z-index:5;
+}
+
+#entrada h1{
+font-size:40px;
+margin-bottom:10px;
+}
+
+#entrada p{
+font-size:18px;
+opacity:0.9;
+}
+
+#entrada button{
+margin-top:25px;
+padding:15px 40px;
+font-size:18px;
+border:none;
+border-radius:12px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+}
+
 /* CONTEÚDO */
 .container {
   padding: 40px 20px;
   position: relative;
   z-index: 1;
+  display:none;
 }
 
-/* CORAÇÃO (SÓ ELE PULSA) */
+/* CORAÇÃO */
 .heart {
   font-size: 40px;
   display: inline-block;
@@ -87,6 +124,33 @@ audio {
   font-size: 18px;
 }
 
+/* ESTRELA CADENTE */
+
+.shooting-star{
+position:fixed;
+top:0;
+left:-100px;
+width:3px;
+height:3px;
+background:white;
+box-shadow:0 0 10px white;
+animation:shoot 6s linear infinite;
+}
+
+@keyframes shoot{
+0%{
+transform:translate(0,0);
+opacity:0;
+}
+10%{
+opacity:1;
+}
+100%{
+transform:translate(120vw,60vh);
+opacity:0;
+}
+}
+
 </style>
 </head>
 
@@ -99,14 +163,30 @@ audio {
 
 <div class="overlay"></div>
 
-<div class="container">
+<div class="shooting-star"></div>
+
+<!-- TELA DE ENTRADA -->
+
+<div id="entrada">
+
+<h1>Kayane 🌹</h1>
+
+<p>Entre o dia 27 e o dia 01…</p>
+<p>nasceu algo especial.</p>
+
+<button onclick="entrar()">Entrar</button>
+
+</div>
+
+<div class="container" id="site">
 
 <h1>🥰 Kayane 💙</h1>
+
 <p>Esse site é só pra você.</p>
 
 <div class="heart">💙</div>
 
-<p> você mereçe o mundo.</p>
+<p>Você merece o mundo.</p>
 
 <img src="foto.jpg">
 
@@ -139,6 +219,17 @@ eu escolheria você em qualquer universo. 🌌
 </div>
 
 </div>
+
+<script>
+
+function entrar(){
+
+document.getElementById("entrada").style.display="none";
+document.getElementById("site").style.display="block";
+
+}
+
+</script>
 
 </body>
 </html>
