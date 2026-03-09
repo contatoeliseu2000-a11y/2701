@@ -9,37 +9,38 @@
 
 /* CONFIGURAÇÃO BASE */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
+margin:0;
+padding:0;
+font-family:Arial, sans-serif;
+color:white;
+text-align:center;
+overflow-x:hidden;
 }
 
 /* VIDEO FUNDO */
-#bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -2;
+#bg-video{
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+object-fit:cover;
+z-index:-2;
 }
 
 /* CAMADA ESCURA */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 30, 0.65);
-  z-index: -1;
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+background:rgba(0,0,30,0.65);
+z-index:-1;
 }
 
-/* TELA DE ENTRADA */
+/* TELA ENTRADA */
 
 #entrada{
 position:fixed;
@@ -57,7 +58,6 @@ z-index:5;
 
 #entrada h1{
 font-size:40px;
-margin-bottom:10px;
 }
 
 #entrada p{
@@ -77,51 +77,84 @@ cursor:pointer;
 }
 
 /* CONTEÚDO */
-.container {
-  padding: 40px 20px;
-  position: relative;
-  z-index: 1;
-  display:none;
+
+.container{
+padding:40px 20px;
+position:relative;
+z-index:1;
+display:none;
 }
 
 /* CORAÇÃO */
-.heart {
-  font-size: 40px;
-  display: inline-block;
-  animation: pulse 1.5s infinite;
+
+.heart{
+font-size:40px;
+animation:pulse 1.5s infinite;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.2);}
+100%{transform:scale(1);}
 }
 
-/* IMAGEM */
-img {
-  width: 90%;
-  max-width: 350px;
-  border-radius: 20px;
-  margin: 20px 0;
+/* FOTO PRINCIPAL */
+
+img{
+width:90%;
+max-width:350px;
+border-radius:20px;
+margin:20px 0;
 }
 
-/* CARDS DAS MÚSICAS */
-.card {
-  background: rgba(0,0,0,0.5);
-  padding: 15px;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 450px;
-  border-radius: 15px;
+/* PLAYER MODERNO */
+
+.music-player{
+display:flex;
+align-items:center;
+gap:15px;
+background:rgba(0,0,0,0.55);
+backdrop-filter:blur(10px);
+padding:15px;
+margin:25px auto;
+width:90%;
+max-width:500px;
+border-radius:18px;
+box-shadow:0 0 20px rgba(255,80,120,0.3);
 }
 
-audio {
-  width: 100%;
+.music-player img{
+width:60px;
+height:60px;
+border-radius:10px;
+object-fit:cover;
+margin:0;
 }
 
-.frase {
-  margin-top: 40px;
-  font-size: 18px;
+.music-info{
+flex:1;
+text-align:left;
+}
+
+.music-info h3{
+margin:0;
+font-size:16px;
+}
+
+.music-info p{
+margin:0;
+font-size:13px;
+opacity:0.7;
+}
+
+audio{
+width:100%;
+margin-top:8px;
+}
+
+.frase{
+margin-top:40px;
+font-size:18px;
 }
 
 /* ESTRELA CADENTE */
@@ -138,17 +171,9 @@ animation:shoot 6s linear infinite;
 }
 
 @keyframes shoot{
-0%{
-transform:translate(0,0);
-opacity:0;
-}
-10%{
-opacity:1;
-}
-100%{
-transform:translate(120vw,60vh);
-opacity:0;
-}
+0%{transform:translate(0,0);opacity:0;}
+10%{opacity:1;}
+100%{transform:translate(120vw,60vh);opacity:0;}
 }
 
 </style>
@@ -156,23 +181,19 @@ opacity:0;
 
 <body>
 
-<!-- VIDEO FUNDO -->
 <video autoplay muted loop playsinline id="bg-video">
-  <source src="video.mp4" type="video/mp4">
+<source src="video.mp4" type="video/mp4">
 </video>
 
 <div class="overlay"></div>
-
 <div class="shooting-star"></div>
-
-<!-- TELA DE ENTRADA -->
 
 <div id="entrada">
 
 <h1>Kayane 🌹</h1>
 
-<p>no dia 27 de novembro…</p>
-<p>nasceu alguem especial.</p>
+<p>No dia 27 de novembro…</p>
+<p>nasceu alguém especial.</p>
 
 <button onclick="entrar()">Entrar</button>
 
@@ -192,25 +213,55 @@ opacity:0;
 
 <h2>🎵 Suas músicas</h2>
 
-<div class="card">
-  <p>Seu Nome é Paz</p>
-  <audio controls>
-    <source src="musicas/seu-nome-e-paz.mp3" type="audio/mpeg">
-  </audio>
+<div class="music-player">
+
+<img src="foto.jpg">
+
+<div class="music-info">
+
+<h3>Seu Nome é Paz</h3>
+<p>Kayane</p>
+
+<audio controls>
+<source src="musicas/seu-nome-e-paz.mp3" type="audio/mpeg">
+</audio>
+
 </div>
 
-<div class="card">
-  <p>Meu Coração é Seu</p>
-  <audio controls>
-    <source src="musicas/meu-coracao-e-seu.mp3" type="audio/mpeg">
-  </audio>
 </div>
 
-<div class="card">
-  <p>Paz em Você</p>
-  <audio controls>
-    <source src="musicas/paz-em-voce.mp3" type="audio/mpeg">
-  </audio>
+<div class="music-player">
+
+<img src="foto.jpg">
+
+<div class="music-info">
+
+<h3>Meu Coração é Seu</h3>
+<p>Kayane</p>
+
+<audio controls>
+<source src="musicas/meu-coracao-e-seu.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
+</div>
+
+<div class="music-player">
+
+<img src="foto.jpg">
+
+<div class="music-info">
+
+<h3>Paz em Você</h3>
+<p>Kayane</p>
+
+<audio controls>
+<source src="musicas/paz-em-voce.mp3" type="audio/mpeg">
+</audio>
+
+</div>
+
 </div>
 
 <div class="frase">
@@ -223,10 +274,8 @@ eu escolheria você em qualquer universo. 🌌
 <script>
 
 function entrar(){
-
 document.getElementById("entrada").style.display="none";
 document.getElementById("site").style.display="block";
-
 }
 
 </script>
